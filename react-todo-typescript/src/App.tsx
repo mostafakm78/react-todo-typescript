@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "bootstrap/dist/css/bootstrap.css"
 import AddTodos from './assets/components/todos/AddTodos'
+import todo from './assets/models/todo'
 
 
 function App() {
-
+    const [ todos , setTodos ] = useState<todo[]>([])
 
   return (
         <div className="App">
@@ -22,7 +23,7 @@ function App() {
             <div className="container d-flex flex-column align-items-center">
                 <h1 className="jumbotron-heading">Welcome!</h1>
                 <p className="lead text-muted">To get started, add some items to your list:</p>
-                <AddTodos />
+                <AddTodos add={setTodos} />
             </div>
           </section>
           <div className="todosList">
