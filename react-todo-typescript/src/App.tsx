@@ -8,6 +8,28 @@ import TodoItem from './assets/components/todos/TodoItem'
 function App() {
     const [ todos , setTodos ] = useState<todo[]>([])
 
+    const DeleteTodo = ( id : number ) : void => {
+        setTodos(
+            todos.filter((todo : todo) => todo.id !== id)
+        )
+    }
+
+    const EditTodo = ( id : number , value : string) : void => {
+        setTodos(
+            todos.map((todo : todo) => {
+                if (todo.id === id) {
+                    return {
+                        ...todo,
+                        title : value
+                    }
+                }
+
+                return todo
+            })
+        )
+    }
+
+
   return (
         <div className="App">
         <header>
@@ -36,7 +58,7 @@ function App() {
                                 <a className="nav-item nav-link font-weight-bold" id="nav-profile-tab">done <span className="badge badge-success">9</span></a>
                             </div>
                         </nav>
-                        {todos.map((todo : todo) => <TodoItem key={todo.id} todo={todo} />)}
+                        {todos.map((todo : todo) => <TodoItem key={todo.id} deletetodo={DeleteTodo} todo={todo} edittodo={EditTodo} />)}
                     </div>
 
                 </div>
